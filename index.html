@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>European Space Stocks · Sven Amberg</title>
+<meta name="description" content="How Europe's listed space companies are doing: launch, satellites, satcom and suppliers, with a dedicated Norway view.">
+<meta property="og:title" content="European Space Stocks">
+<link rel="canonical" href="https://stocks.svenamberg.com/">
+<meta property="og:url" content="https://stocks.svenamberg.com/">
+<meta property="og:description" content="Daily overview of listed European space companies, with a Norway focus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05070d; --panel:#0c1120; --panel2:#111829; --line:#1d2740; --line2:#2a3656;
+    --text:#e6ebf5; --muted:#8792ab; --accent:#7cc4ff; --accent2:#b693ff; --accent3:#ffc46b;
+    --up:#3ddc97; --down:#ff6b7a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:"Space Grotesk",system-ui,sans-serif}
+  body{min-height:100vh;background:
+      radial-gradient(1px 1px at 12% 18%,#fff8 50%,transparent 51%),radial-gradient(1px 1px at 78% 9%,#fff6 50%,transparent 51%),
+      radial-gradient(1.5px 1.5px at 64% 32%,#fff5 50%,transparent 51%),radial-gradient(1px 1px at 33% 72%,#fff5 50%,transparent 51%),
+      radial-gradient(1px 1px at 90% 64%,#fff6 50%,transparent 51%),radial-gradient(1200px 600px at 85% -10%,#1b2a5a55,transparent 60%),var(--bg)}
+  .wrap{max-width:1120px;margin:0 auto;padding:40px 20px 64px}
+  header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  .eyebrow{font:500 12px "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  h1{margin:6px 0 4px;font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.02em}
+  .sub{color:var(--muted);margin:0;max-width:62ch;line-height:1.5}
+  .stamp{font:12px "JetBrains Mono",monospace;color:var(--muted);text-align:right;line-height:1.6}
+  .tabs{display:flex;gap:6px;margin:0 0 18px;border-bottom:1px solid var(--line)}
+  .tabs a{padding:10px 14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:500}
+  .tabs a.on{color:var(--text);border-color:var(--accent)}
+  .banner{display:none;margin:0 0 16px;padding:10px 14px;border:1px dashed #ffc46b88;border-radius:10px;color:var(--accent3);font-size:14px;background:#ffc46b0d}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+  .card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .kpi .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .kpi .val{font:500 26px "JetBrains Mono",monospace;margin-top:6px}
+  .kpi .note{font-size:12px;color:var(--muted);margin-top:2px}
+  .up{color:var(--up)} .down{color:var(--down)}
+  .grid2{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px}
+  h2{font-size:15px;font-weight:500;margin:0}
+  .hint{font-size:12px;color:var(--muted);margin:2px 0 0}
+  .cardhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:8px;flex-wrap:wrap}
+  .seg{display:flex;gap:4px;flex-wrap:wrap}
+  .seg button{background:none;border:1px solid var(--line);color:var(--muted);font:12px "JetBrains Mono",monospace;padding:4px 9px;border-radius:7px;cursor:pointer}
+  .seg button.on{border-color:var(--accent);color:var(--accent);background:#7cc4ff14}
+  .chartbox{position:relative}
+  svg.chart{width:100%;height:270px;display:block}
+  svg.chart text{font:10px "JetBrains Mono",monospace;fill:var(--muted)}
+  .legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:8px;flex-wrap:wrap}
+  .legend i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:6px}
+  .tip{position:absolute;pointer-events:none;background:#0b1222ee;border:1px solid var(--line);border-radius:8px;padding:6px 9px;font:12px "JetBrains Mono",monospace;display:none;white-space:nowrap;z-index:2}
+  .movers h3{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin:4px 0 6px}
+  .mv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .mv:last-child{border:0}
+  .mv span:last-child{font-family:"JetBrains Mono",monospace}
+  .bars .row{display:grid;grid-template-columns:130px 1fr 64px;align-items:center;gap:10px;padding:5px 0;font-size:13px}
+  .bars .track{position:relative;height:8px}
+  .bars .track::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line2)}
+  .bars .fill{position:absolute;top:0;height:100%;border-radius:3px}
+  .bars .v{font-family:"JetBrains Mono",monospace;text-align:right}
+  .toolbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{font-weight:500;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;text-align:right;padding:8px 8px;border-bottom:1px solid var(--line);cursor:pointer;user-select:none;white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}
+  th.sorted::after{content:" ↓";color:var(--accent)} th.sorted.asc::after{content:" ↑"}
+  td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right;font-family:"JetBrains Mono",monospace;white-space:nowrap}
+  td:first-child{font-family:"Space Grotesk",sans-serif;white-space:normal;min-width:180px}
+  tr:last-child td{border-bottom:0}
+  .tk{color:var(--muted);font:11px "JetBrains Mono",monospace}
+  .blurb{color:var(--muted);font-size:12px;margin-top:2px;max-width:42ch}
+  .tag{display:inline-block;font:10px "JetBrains Mono",monospace;padding:1px 6px;border-radius:5px;margin-left:6px;vertical-align:1px;border:1px solid}
+  .tag.core{color:var(--accent);border-color:#7cc4ff55}
+  .tag.major{color:var(--accent2);border-color:#b693ff55}
+  .tag.supplier{color:var(--muted);border-color:var(--line2)}
+  .range{width:72px;height:4px;background:var(--line);border-radius:2px;position:relative;display:inline-block;vertical-align:middle}
+  .range b{position:absolute;top:-3px;width:2px;height:10px;background:var(--text);border-radius:1px}
+  .scroll{overflow-x:auto}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:16px}
+  .co .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .co .nm{font-size:18px;font-weight:500}
+  .co .px{font:500 20px "JetBrains Mono",monospace;text-align:right}
+  .co .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px;font:13px "JetBrains Mono",monospace}
+  .co .stats div span{display:block;font:11px "Space Grotesk",sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .co svg{width:100%;height:56px;margin-top:10px}
+  .unl{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+  .unl div{border:1px dashed var(--line2);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--muted)}
+  .unl b{color:var(--text);font-weight:500;font-size:14px;display:block}
+  .unl em{font-style:normal;font:11px "JetBrains Mono",monospace;color:var(--accent3)}
+  footer{margin-top:24px;color:var(--muted);font-size:12px;line-height:1.6}
+  [hidden]{display:none!important}
+  @media (max-width:860px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.hide-md{display:none}}
+  @media (max-width:560px){.stamp{text-align:left}.hide-sm{display:none}.kpi .val{font-size:21px}td:first-child{min-width:140px}.blurb{display:none}.bars .row{grid-template-columns:100px 1fr 56px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">// Market telemetry</div>
+      <h1>European Space Stocks</h1>
+      <p class="sub">How Europe's listed space companies are doing, from launch providers and satellite builders to operators and the suppliers behind them.</p>
+    </div>
+    <div class="stamp" id="stamp">Loading…</div>
+  </header>
+
+  <nav class="tabs"><a href="#europe" data-v="europe">Europe</a><a href="#norway" data-v="norway">🇳🇴 Norway</a></nav>
+  <div class="banner" id="banner">Sample data: generated for preview. Run the “Update space stocks” workflow to load real prices.</div>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="grid2">
+    <div class="card chartbox">
+      <div class="cardhead">
+        <div><h2 id="chart-title">Sector performance</h2><p class="hint">Equal-weighted index, rebased to 100</p></div>
+        <div class="seg" id="ranges"><button data-m="1">1M</button><button data-m="3">3M</button><button data-m="6">6M</button><button data-m="12" class="on">1Y</button></div>
+      </div>
+      <svg class="chart" id="chart" role="img" aria-label="Index performance chart"></svg>
+      <div class="legend" id="legend"></div>
+      <div class="tip" id="tip"></div>
+    </div>
+    <div class="card movers" id="side"></div>
+  </section>
+
+  <!-- Europe -->
+  <section id="v-europe">
+    <div class="card" style="margin-bottom:16px">
+      <div class="cardhead"><div><h2>By segment</h2><p class="hint">Median return per segment</p></div>
+        <div class="seg" id="segperiod"><button data-k="m1">1M</button><button data-k="ytd" class="on">YTD</button><button data-k="y1">1Y</button></div></div>
+      <div class="bars" id="bars"></div>
+    </div>
+    <div class="card">
+      <div class="toolbar">
+        <div><h2>Companies</h2><p class="hint">Exposure: <span class="tag core">core</span> space is the main business · <span class="tag major">major</span> large space division · <span class="tag supplier">supplier</span> space is a smaller share</p></div>
+        <div class="seg" id="expfilter"><button data-x="all" class="on">All</button><button data-x="core">Core</button><button data-x="major">Major</button><button data-x="supplier">Suppliers</button></div>
+      </div>
+      <div class="scroll"><table><thead><tr id="thead"></tr></thead><tbody id="tbody"></tbody></table></div>
+    </div>
+  </section>
+
+  <!-- Norway -->
+  <section id="v-norway" hidden>
+    <div class="cards" id="nocards"></div>
+    <div class="card">
+      <div class="cardhead"><div><h2>Not listed, but central to Norwegian space</h2><p class="hint">State-owned or private, so there's no share price to track</p></div></div>
+      <div class="unl" id="unlisted"></div>
+    </div>
+  </section>
+
+  <footer>
+    Prices: Yahoo Finance, refreshed after European market close on weekdays, in local currency. Indices are equal-weighted (every company counts the same) and exclude dividends. Market caps are converted to EUR.
+    The company list and exposure tags are my own selection, and the list isn't complete. Nothing here is investment advice.<br>
+    Part of <a href="https://svenamberg.com/tools.html" style="color:var(--accent)">svenamberg.com tools</a>.
+  </footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const pct = (v, d=1) => v==null||isNaN(v) ? "–" : (v>0?"+":"") + v.toFixed(d).replace("-","−") + "%";
+const cls = v => v>0 ? "up" : v<0 ? "down" : "";
+const num = (v,d=2) => v.toLocaleString("en-GB",{minimumFractionDigits:d,maximumFractionDigits:d});
+const cap = v => v==null ? "–" : v>=1e9 ? "€" + num(v/1e9, v>=1e10?0:1) + "B" : "€" + num(v/1e6,0) + "M";
+const flag = c => String.fromCodePoint(...[...c].map(ch => 127397 + ch.charCodeAt()));
+const median = a => { a=a.filter(v=>v!=null).sort((x,y)=>x-y); if(!a.length) return null; const m=a.length>>1; return a.length%2?a[m]:(a[m-1]+a[m])/2; };
+let D, view = "europe", range = 12, sortKey = "mcapEUR", sortAsc = false, expo = "all", segK = "ytd";
+
+fetch("data/market.json?t=" + Date.now()).then(r => r.json()).then(d => { D = d; route(); })
+  .catch(() => $("stamp").textContent = "Could not load market data.");
+addEventListener("hashchange", route);
+
+function route(){
+  view = location.hash === "#norway" ? "norway" : "europe";
+  document.querySelectorAll(".tabs a").forEach(a => a.classList.toggle("on", a.dataset.v === view));
+  $("v-europe").hidden = view !== "europe"; $("v-norway").hidden = view !== "norway";
+  render();
+}
+
+function render(){
+  $("stamp").innerHTML = `Close ${D.asOf}<br>updated ${new Date(D.generated).toLocaleString("en-GB",{dateStyle:"medium",timeStyle:"short"})}`;
+  $("banner").style.display = D.sample ? "block" : "none";
+  const V = D.views[view], s = V.summary;
+  const cos = D.companies.filter(c => view === "europe" || c.norway);
+  $("kpis").innerHTML = [
+    ["Median today", `<span class="${cls(s.medianD1)}">${pct(s.medianD1,2)}</span>`, `${s.advancers} of ${s.count} up`],
+    ["Median YTD", `<span class="${cls(s.medianYtd)}">${pct(s.medianYtd)}</span>`, "year to date"],
+    ["Median 1 year", `<span class="${cls(s.medianY1)}">${pct(s.medianY1)}</span>`, "trailing 12 months"],
+    ["Combined market cap", cap(s.mcapEUR), `${s.count} companies tracked`],
+  ].map(([l,v,n]) => `<div class="card kpi"><div class="label">${l}</div><div class="val">${v}</div><div class="note">${n}</div></div>`).join("");
+  $("chart-title").textContent = view === "europe" ? "European space sector" : "Norwegian space-linked stocks";
+  renderSide(cos);
+  if (view === "europe") { renderBars(); renderTable(); } else renderNorway(cos);
+  drawChart();
+}
+
+function renderSide(cos){
+  const by = [...cos].filter(c=>c.d1!=null).sort((a,b)=>b.d1-a.d1);
+  const line = c => `<div class="mv"><span>${c.name} <span class="tk">${c.ticker}</span></span><span class="${cls(c.d1)}">${pct(c.d1,2)}</span></div>`;
+  if (view === "norway") {
+    const yt = [...cos].sort((a,b)=>(b.ytd??-1e9)-(a.ytd??-1e9));
+    $("side").innerHTML = `<h3>Today</h3>${by.map(line).join("")}<h3 style="margin-top:16px">Year to date</h3>` +
+      yt.map(c=>`<div class="mv"><span>${c.name}</span><span class="${cls(c.ytd)}">${pct(c.ytd)}</span></div>`).join("");
+  } else {
+    $("side").innerHTML = `<h3>Top movers today</h3>${by.slice(0,4).map(line).join("")}<h3 style="margin-top:16px">Biggest fallers</h3>${by.slice(-4).reverse().map(line).join("")}`;
+  }
+}
+
+function renderBars(){
+  const segs = {};
+  D.companies.forEach(c => (segs[c.segment] ??= []).push(c[segK]));
+  const rows = Object.entries(segs).map(([n,v]) => [n, median(v), v.length]).filter(r=>r[1]!=null).sort((a,b)=>b[1]-a[1]);
+  const mx = Math.max(...rows.map(r=>Math.abs(r[1])), 1);
+  $("bars").innerHTML = rows.map(([n,v,k]) => {
+    const w = Math.abs(v)/mx*50;
+    return `<div class="row"><span>${n} <span class="tk">${k}</span></span><div class="track"><div class="fill" style="${v>=0?`left:50%`:`left:${50-w}%`};width:${w}%;background:${v>=0?"var(--up)":"var(--down)"}"></div></div><span class="v ${cls(v)}">${pct(v)}</span></div>`;
+  }).join("");
+}
+
+function spark(arr, w=80, h=24){
+  const mn=Math.min(...arr), mx=Math.max(...arr), sp=mx-mn||1;
+  const pts=arr.map((v,i)=>`${(i/(arr.length-1)*w).toFixed(1)},${(h-2-(v-mn)/sp*(h-4)).toFixed(1)}`).join(" ");
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><polyline points="${pts}" fill="none" stroke="${arr[arr.length-1]>=arr[0]?"var(--up)":"var(--down)"}" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>`;
+}
+const rangeBar = c => { const p = c.hi52>c.lo52 ? (c.price-c.lo52)/(c.hi52-c.lo52)*100 : 50;
+  return `<span class="range" title="52w ${num(c.lo52)} – ${num(c.hi52)}"><b style="left:calc(${p}% - 1px)"></b></span>`; };
+
+function renderTable(){
+  const cols = [["name","Company"],["price","Price","hide-sm"],["d1","1D"],["m1","1M","hide-sm"],["ytd","YTD"],["y1","1Y","hide-md"],
+                ["mcapEUR","Mkt cap","hide-sm"],["r52","52w range","hide-md",1],["spark","3 months","hide-md",1]];
+  $("thead").innerHTML = cols.map(([k,l,c="",ns]) => `<th data-k="${k}" ${ns?"data-ns=1":""} class="${c} ${k===sortKey?"sorted"+(sortAsc?" asc":""):""}">${l}</th>`).join("");
+  document.querySelectorAll("#thead th").forEach(th => th.onclick = () => { if (th.dataset.ns) return;
+    const k = th.dataset.k; sortAsc = k===sortKey ? !sortAsc : k==="name"; sortKey = k; renderTable(); });
+  const rows = D.companies.filter(c => expo==="all" || c.exposure===expo).sort((a,b) => {
+    const x=a[sortKey], y=b[sortKey]; if (x==null) return 1; if (y==null) return -1;
+    const r = typeof x==="string" ? x.localeCompare(y) : x-y; return sortAsc ? r : -r; });
+  $("tbody").innerHTML = rows.map(c => `<tr>
+    <td>${flag(c.country)} ${c.name}<span class="tag ${c.exposure}">${c.exposure}</span><div class="tk">${c.ticker} · ${c.segment}</div><div class="blurb">${c.blurb}</div></td>
+    <td class="hide-sm">${num(c.price)} <span class="tk">${c.currency}</span></td>
+    <td class="${cls(c.d1)}">${pct(c.d1,2)}</td><td class="hide-sm ${cls(c.m1)}">${pct(c.m1)}</td>
+    <td class="${cls(c.ytd)}">${pct(c.ytd)}</td><td class="hide-md ${cls(c.y1)}">${pct(c.y1)}</td>
+    <td class="hide-sm">${cap(c.mcapEUR)}</td><td class="hide-md">${rangeBar(c)}</td><td class="hide-md">${spark(c.spark)}</td></tr>`).join("");
+}
+
+function renderNorway(cos){
+  $("nocards").innerHTML = cos.sort((a,b)=>(b.mcapEUR||0)-(a.mcapEUR||0)).map(c => `<div class="card co">
+    <div class="top"><div><div class="nm">${c.name}<span class="tag ${c.exposure}">${c.exposure}</span></div><div class="tk">${c.ticker} · ${c.segment}</div></div>
+      <div class="px">${num(c.price)} <span class="tk">${c.currency}</span><div class="${cls(c.d1)}" style="font-size:13px">${pct(c.d1,2)}</div></div></div>
+    <div class="blurb" style="display:block;max-width:none;margin-top:8px">${c.blurb}</div>
+    ${spark(c.spark, 300, 56)}
+    <div class="stats"><div><span>1M</span><b class="${cls(c.m1)}">${pct(c.m1)}</b></div><div><span>YTD</span><b class="${cls(c.ytd)}">${pct(c.ytd)}</b></div>
+      <div><span>1Y</span><b class="${cls(c.y1)}">${pct(c.y1)}</b></div><div><span>Mkt cap</span><b>${cap(c.mcapEUR)}</b></div></div></div>`).join("");
+  $("unlisted").innerHTML = D.norwayUnlisted.map(u => `<div><b>${u.name}</b><em>${u.owner}</em><br>${u.blurb}</div>`).join("");
+}
+
+function drawChart(){
+  const V = D.views[view], svg = $("chart"), W = svg.clientWidth, H = svg.clientHeight, P = {l:36,r:10,t:10,b:24};
+  const cut = new Date(D.asOf); cut.setMonth(cut.getMonth()-range);
+  const i0 = Math.max(0, D.dates.findIndex(d => new Date(d) >= cut)), dates = D.dates.slice(i0);
+  const reb = a => a ? a.slice(i0).map(v => v/a[i0]*100) : null;
+  const series = [
+    {name: view==="europe" ? "All tracked" : "Norway space-linked", v: reb(V.index), c: "var(--accent)", w: 2},
+    ...(V.coreIndex ? [{name: "Core space only", v: reb(V.coreIndex), c: "var(--accent3)", w: 1.5}] : []),
+    ...(V.benchmark ? [{name: V.benchmark.name, v: reb(V.benchmark.values), c: "var(--accent2)", w: 1.3, dash: "4 3"}] : []),
+  ].filter(s => s.v);
+  const all = series.flatMap(s => s.v); let mn = Math.min(...all), mx = Math.max(...all); const pad = (mx-mn)*.08||1; mn -= pad; mx += pad;
+  const x = i => P.l + i/(dates.length-1)*(W-P.l-P.r), y = v => P.t + (1-(v-mn)/(mx-mn))*(H-P.t-P.b);
+  const path = a => a.map((v,i) => `${i?"L":"M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join("");
+  const raw = (mx-mn)/4, p10 = 10**Math.floor(Math.log10(raw)), n = raw/p10, step = (n<1.5?1:n<3?2:n<7?5:10)*p10;
+  let g = ""; for (let v = Math.ceil(mn/step)*step; v <= mx; v += step) g += `<line x1="${P.l}" x2="${W-P.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${P.l-6}" y="${y(v)+4}" text-anchor="end">${Math.round(v)}</text>`;
+  for (const f of [0,.5,1]) { const i = Math.round(f*(dates.length-1)); g += `<text x="${x(i)}" y="${H-6}" text-anchor="${f===0?"start":f===1?"end":"middle"}">${dates[i]}</text>`; }
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.innerHTML = g + `<line x1="${P.l}" x2="${W-P.r}" y1="${y(100)}" y2="${y(100)}" stroke="var(--muted)" stroke-dasharray="3 4" opacity=".5"/>` +
+    [...series].reverse().map(s => `<path d="${path(s.v)}" fill="none" stroke="${s.c}" stroke-width="${s.w}" ${s.dash?`stroke-dasharray="${s.dash}" opacity=".85"`:""}/>`).join("") +
+    `<line id="hx" y1="${P.t}" y2="${H-P.b}" stroke="var(--muted)" opacity="0"/>`;
+  $("legend").innerHTML = series.map(s => { const r = s.v[s.v.length-1]-100; return `<span><i style="background:${s.c}"></i>${s.name} <b class="${cls(r)}">${pct(r)}</b></span>`; }).join("");
+  const tip = $("tip");
+  svg.onmousemove = e => {
+    const r = svg.getBoundingClientRect(), cr = svg.parentElement.getBoundingClientRect();
+    const i = Math.max(0, Math.min(dates.length-1, Math.round((e.clientX-r.left-P.l)/(W-P.l-P.r)*(dates.length-1))));
+    $("hx").setAttribute("x1", x(i)); $("hx").setAttribute("x2", x(i)); $("hx").setAttribute("opacity", .5);
+    tip.style.display = "block"; tip.innerHTML = dates[i] + series.map(s => `<br><span style="color:${s.c}">■</span> ${pct(s.v[i]-100)}`).join("");
+    const tx = x(i)+r.left-cr.left; tip.style.left = (x(i) > W*.65 ? tx-tip.offsetWidth-12 : tx+12) + "px"; tip.style.top = (r.top-cr.top+12) + "px";
+  };
+  svg.onmouseleave = () => { tip.style.display = "none"; $("hx").setAttribute("opacity", 0); };
+}
+
+const seg = (id, fn) => $(id).onclick = e => { const b = e.target.closest("button"); if (!b) return;
+  $(id).querySelectorAll("button").forEach(x => x.classList.toggle("on", x===b)); fn(b); };
+seg("ranges", b => { range = +b.dataset.m; drawChart(); });
+seg("segperiod", b => { segK = b.dataset.k; renderBars(); });
+seg("expfilter", b => { expo = b.dataset.x; renderTable(); });
+addEventListener("resize", () => D && drawChart());
+</script>
+</body>
+</html>

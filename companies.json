@@ -1,0 +1,234 @@
+{
+  "_comment": "Edit freely. ticker = Yahoo Finance symbol. exposure: core (space is the main business), major (large space division), supplier (supplies space hardware/components, space is a small share). Set norway:true to include in the Norway view.",
+  "benchmarks": {
+    "europe": {
+      "ticker": "^STOXX",
+      "name": "STOXX Europe 600"
+    },
+    "norway": {
+      "ticker": "OSEBX.OL",
+      "name": "Oslo Børs Benchmark (OSEBX)"
+    }
+  },
+  "companies": [
+    {
+      "ticker": "AVIO.MI",
+      "name": "Avio",
+      "country": "IT",
+      "currency": "EUR",
+      "segment": "Launch",
+      "exposure": "core",
+      "blurb": "Vega launchers and solid rocket motors for Ariane 6."
+    },
+    {
+      "ticker": "OHB.DE",
+      "name": "OHB",
+      "country": "DE",
+      "currency": "EUR",
+      "segment": "Satellites",
+      "exposure": "core",
+      "blurb": "Satellite manufacturer: Galileo, EO and science missions."
+    },
+    {
+      "ticker": "SESG.PA",
+      "name": "SES",
+      "country": "LU",
+      "currency": "EUR",
+      "segment": "Satcom",
+      "exposure": "core",
+      "blurb": "GEO and MEO satellite operator (O3b mPOWER)."
+    },
+    {
+      "ticker": "ETL.PA",
+      "name": "Eutelsat",
+      "country": "FR",
+      "currency": "EUR",
+      "segment": "Satcom",
+      "exposure": "core",
+      "blurb": "GEO operator and owner of the OneWeb LEO constellation."
+    },
+    {
+      "ticker": "GOMX.ST",
+      "name": "GomSpace",
+      "country": "DK",
+      "currency": "SEK",
+      "segment": "Small sats",
+      "exposure": "core",
+      "blurb": "Nanosatellite platforms and subsystems."
+    },
+    {
+      "ticker": "AAC.ST",
+      "name": "AAC Clyde Space",
+      "country": "SE",
+      "currency": "SEK",
+      "segment": "Small sats",
+      "exposure": "core",
+      "blurb": "Small-satellite missions and space data as a service."
+    },
+    {
+      "ticker": "OVZON.ST",
+      "name": "Ovzon",
+      "country": "SE",
+      "currency": "SEK",
+      "segment": "Satcom",
+      "exposure": "core",
+      "blurb": "Mobile satcom for defence and government users."
+    },
+    {
+      "ticker": "AIR.PA",
+      "name": "Airbus",
+      "country": "FR",
+      "currency": "EUR",
+      "segment": "Primes",
+      "exposure": "major",
+      "blurb": "Airbus Defence and Space: satellites, Orion ESM, ArianeGroup stake."
+    },
+    {
+      "ticker": "HO.PA",
+      "name": "Thales",
+      "country": "FR",
+      "currency": "EUR",
+      "segment": "Primes",
+      "exposure": "major",
+      "blurb": "Thales Alenia Space: telecom, EO and exploration spacecraft."
+    },
+    {
+      "ticker": "LDO.MI",
+      "name": "Leonardo",
+      "country": "IT",
+      "currency": "EUR",
+      "segment": "Primes",
+      "exposure": "major",
+      "blurb": "Telespazio and stake in Thales Alenia Space."
+    },
+    {
+      "ticker": "SAF.PA",
+      "name": "Safran",
+      "country": "FR",
+      "currency": "EUR",
+      "segment": "Propulsion",
+      "exposure": "major",
+      "blurb": "ArianeGroup co-owner; electric propulsion and optics."
+    },
+    {
+      "ticker": "KOG.OL",
+      "name": "Kongsberg Gruppen",
+      "country": "NO",
+      "currency": "NOK",
+      "segment": "Primes",
+      "exposure": "major",
+      "norway": true,
+      "blurb": "KSAT ground stations, Kongsberg NanoAvionics, N3X constellation."
+    },
+    {
+      "ticker": "HAG.DE",
+      "name": "Hensoldt",
+      "country": "DE",
+      "currency": "EUR",
+      "segment": "Payloads & sensors",
+      "exposure": "major",
+      "blurb": "Space optronics and sensors (Hensoldt Space Consulting)."
+    },
+    {
+      "ticker": "IDR.MC",
+      "name": "Indra",
+      "country": "ES",
+      "currency": "EUR",
+      "segment": "Ground & services",
+      "exposure": "major",
+      "blurb": "Ground segment, space surveillance; Hisdesat stake."
+    },
+    {
+      "ticker": "QQ.L",
+      "name": "QinetiQ",
+      "country": "GB",
+      "currency": "GBp",
+      "segment": "Ground & services",
+      "exposure": "supplier",
+      "blurb": "Space test, small satellites and ground services."
+    },
+    {
+      "ticker": "MRO.L",
+      "name": "Melrose (GKN)",
+      "country": "GB",
+      "currency": "GBp",
+      "segment": "Propulsion",
+      "exposure": "supplier",
+      "blurb": "GKN Aerospace: Ariane 6 Vulcain/Vinci engine parts."
+    },
+    {
+      "ticker": "EXA.PA",
+      "name": "Exail Technologies",
+      "country": "FR",
+      "currency": "EUR",
+      "segment": "Payloads & sensors",
+      "exposure": "supplier",
+      "blurb": "Photonics and navigation systems, incl. space-qualified."
+    },
+    {
+      "ticker": "FACC.VI",
+      "name": "FACC",
+      "country": "AT",
+      "currency": "EUR",
+      "segment": "Components",
+      "exposure": "supplier",
+      "blurb": "Composite structures, incl. space applications."
+    },
+    {
+      "ticker": "STMPA.PA",
+      "name": "STMicroelectronics",
+      "country": "FR",
+      "currency": "EUR",
+      "segment": "Components",
+      "exposure": "supplier",
+      "blurb": "Rad-hard and LEO-grade semiconductors."
+    },
+    {
+      "ticker": "KIT.OL",
+      "name": "Kitron",
+      "country": "NO",
+      "currency": "NOK",
+      "segment": "Components",
+      "exposure": "supplier",
+      "norway": true,
+      "blurb": "High-reliability electronics manufacturing for defence and space."
+    },
+    {
+      "ticker": "NOD.OL",
+      "name": "Nordic Semiconductor",
+      "country": "NO",
+      "currency": "NOK",
+      "segment": "Components",
+      "exposure": "supplier",
+      "norway": true,
+      "blurb": "Wireless chips, incl. satellite IoT (NB-IoT NTN)."
+    }
+  ],
+  "norwayUnlisted": [
+    {
+      "name": "KSAT",
+      "owner": "Kongsberg & Space Norway",
+      "blurb": "Global ground station network, incl. SvalSat."
+    },
+    {
+      "name": "Space Norway",
+      "owner": "Norwegian state",
+      "blurb": "Satellite infrastructure, incl. the Arctic Satellite Broadband Mission."
+    },
+    {
+      "name": "Andøya Space",
+      "owner": "Norwegian state & Kongsberg",
+      "blurb": "Spaceport and sounding-rocket range on Andøya."
+    },
+    {
+      "name": "Nammo",
+      "owner": "Norwegian state & Patria",
+      "blurb": "Rocket motors and space propulsion components."
+    },
+    {
+      "name": "Eidel",
+      "owner": "Private",
+      "blurb": "Space electronics; partner in Kongsberg's Arctic Ocean Surveillance mission."
+    }
+  ]
+}
